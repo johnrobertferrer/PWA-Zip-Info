@@ -6,17 +6,42 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <Search />
+      <Search v-on:get-zip="getZipInfo" />
+      <Info v-bind:info="info" />
     </ion-content>
   </div>
 </template>
 
 <script>
 import Search from '../components/Search';
+import Info from '../components/Info';
 export default {
   name: 'home',
   components: {
-    Search
+    Search,
+    Info
+  },
+  data() {
+    return {
+      info: null
+    }
+  },
+  methods: {
+    async getZipInfo(zip) {
+      const res = await fetch(`http://api.zippopotam.us/PH/${zip}`);
+      if(res.status == 404)
+        this.showAlert();
+      this.info = await res.json();
+    },
+    showAlert() {
+      return this.$ionic.alertController
+        .create({
+            header: "Not Valid",
+            message: "Please enter a valid PH zipcode",
+            buttons: ["OK"]
+        })
+        .then(a => a.present())
+    }
   }
 }
 </script>
