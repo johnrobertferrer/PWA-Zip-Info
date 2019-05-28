@@ -8,6 +8,7 @@
     <ion-content class="ion-padding">
       <Search v-on:get-zip="getZipInfo" />
       <Info v-bind:info="info" />
+      <ClearInfo v-bind:info="info" v-on:clear-info="clearInfo" />
     </ion-content>
   </div>
 </template>
@@ -15,11 +16,14 @@
 <script>
 import Search from '../components/Search';
 import Info from '../components/Info';
+import ClearInfo from '../components/ClearInfo';
+
 export default {
   name: 'home',
   components: {
     Search,
-    Info
+    Info,
+    ClearInfo
   },
   data() {
     return {
@@ -32,6 +36,9 @@ export default {
       if(res.status == 404)
         this.showAlert();
       this.info = await res.json();
+    },
+    clearInfo() {
+      this.info = null;
     },
     showAlert() {
       return this.$ionic.alertController

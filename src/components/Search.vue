@@ -43,7 +43,7 @@ export default {
                     message: "Please enter a valid PH zipcode",
                     buttons: ["OK"]
                 })
-                .then(a => a.present())
+                .then(a => a.present());
         }
     }
 }
