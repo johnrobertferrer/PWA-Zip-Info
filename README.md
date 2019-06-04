@@ -25,5 +25,7 @@ npm run test
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Demo
+```
+https://zipfinder-80998.firebaseapp.com/
+```
