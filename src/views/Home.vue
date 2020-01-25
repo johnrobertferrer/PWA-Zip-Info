@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     async getZipInfo(zip) {
-      const res = await fetch(`http://api.zippopotam.us/PH/${zip}`);
+      const res = await fetch(`https://api.zippopotam.us/PH/${zip}`);
       if(res.status == 404)
         this.showAlert();
       this.info = await res.json();
